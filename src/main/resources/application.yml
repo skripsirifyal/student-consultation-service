@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: student-consultation-service
+  config:
+    import: optional:configserver:https://root:4c4d3mIc5ec12eT@guidance-config-service.herokuapp.com
+  cloud:
+    config:
+      uri: https://guidance-config-service.herokuapp.com/
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVICE
+      retry:
+        initial-interval: 2000
+        multiplier: 1.5
+        max-interval: 60000
+        max-attempts: 100
+      profile: development
+      username: root
+      password: 4c4d3mIc5ec12eT
+      label: main
+      name: student-consultation-service
+
+eureka:
+  instance:
+    hostname: student-consultation-service.herokuapp.com
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: https://guidance-discovery-service.herokuapp.com/eureka/
